@@ -56,4 +56,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .sign(HMAC512(SecurityConstants.SECRET.getBytes()));
         res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
     }
+
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest req,
+                                              HttpServletResponse res,
+                                              AuthenticationException failed) throws IOException, ServletException {
+        super.unsuccessfulAuthentication(req, res, failed);
+    }
 }
